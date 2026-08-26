@@ -1,1115 +1,1025 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Mar&ccedil;al Rossinyol's Home Page</title>
-    <meta name="Author" content="Mar&ccedil;al Rossinyol">
-    <meta name="keywords" lang="en-us" content="rossinyol, mar&ccedil;al, mar&ccedil;al rossinyol, marcal, rusinol, rusi&ntilde;ol, marcal rusinol, marcal rusi&ntilde;ol, mar&ccedil;al rusinol, mar&ccedil;al rusi&ntilde;ol, scene text, ocr, deep learning, artificial intelligence, machine learning, computer vision, allread, spotting,  pattern recognition, handwriting, text, image, container, code, bic, uic, license plate, adr">
-    <link rel="stylesheet" type="text/css" href="./imgs/variant-multi.css" title="Variant Multi" media="all">
-	
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mar&ccedil;al Rossinyol</title>
+<meta name="author" content="Mar&ccedil;al Rossinyol">
+<meta name="description" content="Mar&ccedil;al Rossinyol (PhD) &mdash; CTO and co-founder of AllRead Machine Learning Technologies. Computer vision, document analysis and intelligent reading systems.">
+<meta name="keywords" content="rossinyol, mar&ccedil;al, mar&ccedil;al rossinyol, marcal, rusinol, rusi&ntilde;ol, marcal rusinol, marcal rusi&ntilde;ol, mar&ccedil;al rusinol, mar&ccedil;al rusi&ntilde;ol, scene text, ocr, deep learning, artificial intelligence, machine learning, computer vision, allread, spotting, pattern recognition, handwriting, text, image, container, code, bic, uic, license plate, adr">
+<link rel="icon" href="./imgs/marcal2.png">
+<style>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LDZCWJ1KHX"></script>
-<script>
-	window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-LDZCWJ1KHX');
-</script>
+:root {
+  --bg: #fbfaf8;
+  --panel: #ffffff;
+  --ink: #1c1f24;
+  --ink-soft: #4d545e;
+  --ink-faint: #7d858f;
+  --rule: #e5e2dc;
+  --accent: #9c3b2e;
+  --accent-soft: #f3e7e4;
+  --shadow: 0 1px 2px rgba(20, 22, 26, .05), 0 8px 24px -16px rgba(20, 22, 26, .25);
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14161a;
+    --panel: #1a1d22;
+    --ink: #e8e6e1;
+    --ink-soft: #b0b6bf;
+    --ink-faint: #838a94;
+    --rule: #2b2f36;
+    --accent: #e8917f;
+    --accent-soft: #33221f;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -16px rgba(0, 0, 0, .8);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: .15em; }
+
+.wrap {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem;
+}
+
+/* ---------- header ---------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 2rem;
+  align-items: center;
+  padding: 3.5rem 1.5rem 2.5rem;
+}
+
+.portrait {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(1.9rem, 4.4vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: -.015em;
+  margin: 0 0 .1rem;
+}
+
+.hero .degree {
+  font-family: var(--sans);
+  font-size: .5em;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  vertical-align: .35em;
+  margin-left: .5rem;
+}
+
+.hero .role {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin: .4rem 0 0;
+}
+
+.hero .role strong { color: var(--ink); font-weight: 600; }
+
+.hero .contact {
+  margin: 1rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.hero .contact a {
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+  border-radius: 99px;
+  padding: .25rem .8rem;
+}
+
+.hero .contact a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+/* ---------- nav ---------- */
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 3rem;
+}
+
+nav ul {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.6rem;
+}
+
+nav a {
+  display: block;
+  padding: .85rem 0;
+  font-size: .82rem;
+  font-weight: 550;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-bottom: 2px solid transparent;
+}
+
+nav a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  text-decoration: none;
+}
+
+/* ---------- sections ---------- */
+
+section { margin-bottom: 4rem; scroll-margin-top: 4rem; }
+
+h2 {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  margin: 0 0 .35rem;
+}
+
+.count {
+  font-family: var(--sans);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  color: var(--ink-faint);
+  background: var(--accent-soft);
+  border-radius: 99px;
+  padding: .2rem .55rem;
+  vertical-align: .3em;
+  margin-left: .5rem;
+}
+
+.section-rule {
+  height: 2px;
+  background: var(--accent);
+  width: 2.5rem;
+  border: 0;
+  margin: 0 0 1.6rem;
+}
+
+.bio p { color: var(--ink-soft); margin: 0 0 1.05rem; max-width: 68ch; }
+.bio p:last-child { margin-bottom: 0; }
+.bio strong { color: var(--ink); font-weight: 600; }
+
+.metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.metrics li {
+  flex: 1 1 8rem;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: .85rem 1rem;
+  box-shadow: var(--shadow);
+}
+
+.metrics b {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.metrics span {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ---------- publications ---------- */
+
+ol.pubs {
+  list-style: none;
+  counter-reset: pub;
+  margin: 0;
+  padding: 0;
+}
+
+ol.pubs > li {
+  counter-increment: pub;
+  position: relative;
+  padding: 1rem 0 1rem 3rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+ol.pubs > li:last-child { border-bottom: 0; }
+
+ol.pubs > li::before {
+  content: counter(pub);
+  position: absolute;
+  left: 0;
+  top: 1.15rem;
+  width: 2rem;
+  text-align: right;
+  font-size: .78rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+}
+
+.pub-title {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.07rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.pub-title a { color: var(--ink); }
+.pub-title a:hover { color: var(--accent); text-decoration: none; }
+
+.pub-authors {
+  margin: .2rem 0 0;
+  font-size: .89rem;
+  color: var(--ink-soft);
+}
+
+.pub-meta {
+  margin: .3rem 0 0;
+  font-size: .86rem;
+  color: var(--ink-faint);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem .6rem;
+  align-items: baseline;
+}
+
+.pub-meta em { font-style: italic; color: var(--ink-soft); }
+
+.award {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 99px;
+  padding: .1rem .55rem;
+  white-space: nowrap;
+}
+
+a.pdf {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  border: 1px solid var(--rule);
+  border-radius: 99px;
+  padding: .1rem .55rem;
+  color: var(--ink-soft);
+}
+
+a.pdf:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* ---------- distinctions ---------- */
+
+ul.awards { list-style: none; margin: 0; padding: 0; }
+
+ul.awards li {
+  position: relative;
+  padding: .55rem 0 .55rem 1.25rem;
+  font-size: .93rem;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--rule);
+}
+
+ul.awards li:last-child { border-bottom: 0; }
+
+ul.awards li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.15rem;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: .6;
+}
+
+ul.awards b { color: var(--ink); font-weight: 600; }
+ul.awards i { font-style: italic; }
+
+/* ---------- footer ---------- */
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.5rem;
+  font-size: .82rem;
+  color: var(--ink-faint);
+}
+
+footer p { margin: 0 0 .3rem; }
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 640px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 2.5rem 1.5rem 2rem;
+  }
+  .portrait { width: 110px; height: 110px; }
+  nav ul { gap: 0 1.1rem; }
+  nav a { font-size: .74rem; }
+  ol.pubs > li { padding-left: 2.25rem; }
+  ol.pubs > li::before { width: 1.4rem; }
+}
+
+@media print {
+  nav { display: none; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  a { color: #000; }
+  ol.pubs > li { break-inside: avoid; }
+}
+</style>
 </head>
-
 <body>
-<div id="container980">
-	<div id="main">
-		<div id="content">
-		<div class="full">			
-			<img class="floatLeft" src="./imgs/marcal2.png" height="150" width="150" alt="Marçal Rossinyol" />
-			<img class="floatRight" src="./imgs/allread.png" height="100"  	alt="AllRead" />	<br>	
-			<h3>Mar&ccedil;al Rossinyol (PhD)</h3>
-			CTO & Co-Founder <br>
-			<a href="http://www.allread.ai">AllRead Machine Learning Technologies</a> <br>
-			marcal [at] allread [dot] ai
-			</div>			
-			<hr />
-<br>
+<header class="wrap hero">
+  <img class="portrait" src="./imgs/marcal2.png" width="150" height="150" alt="Mar&ccedil;al Rossinyol">
+  <div>
+    <h1>Mar&ccedil;al Rossinyol<span class="degree">PhD</span></h1>
+    <p class="role"><strong>CTO &amp; Co-Founder</strong>, <a href="http://www.allread.ai">AllRead Machine Learning Technologies</a></p>
+    <p class="contact">
+      <a href="http://scholar.google.com/citations?user=Uvxu49IAAAAJ&amp;hl=en">Google Scholar</a>
+      <a href="https://www.linkedin.com/in/mrossinyol">LinkedIn</a>
+    </p>
+  </div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#bio">Short Bio</a></li>
+    <li><a href="#journals">Journal Papers</a></li>
+    <li><a href="#conferences">Conferences</a></li>
+    <li><a href="#books">Books &amp; Theses</a></li>
+    <li><a href="#distinctions">Distinctions</a></li>
+  </ul>
+</nav>
+
+<main class="wrap">
+<section id="bio">
 <h2>Short Bio</h2>
-<p>Mar&ccedil;al Rossinyol received his B.Sc. (2004), M.Sc. (2006) and Ph.D. (2009) degrees in Computer Science from the Universitat Aut&ograve;noma de Barcelona, Spain. From 2009-2020, he was a post-doctoral associate researcher at the Computer Vision Center where he participated in more than 20 competitive research projects, both nationally and from the European Commission, and in more than 15 technology transfer projects, being the IP of several of them.
-</p>
-
+<hr class="section-rule">
+<div class="bio">
+<p>Mar&ccedil;al Rossinyol received his B.Sc. (2004), M.Sc. (2006) and Ph.D. (2009) degrees in Computer Science from the Universitat Aut&ograve;noma de Barcelona, Spain. From 2009-2020, he was a post-doctoral associate researcher at the Computer Vision Center where he participated in more than 20 competitive research projects, both nationally and from the European Commission, and in more than 15 technology transfer projects, being the PI of several of them.</p>
 <p>In 2012 and 2014 he was a Marie Curie fellow researcher at the French company Itesoft and at the Laboratoire Informatique, Image et Interaction of the Universit&eacute; de La Rochelle.</p>
-
-<p>He has served as program committee member in a dozen of international conferences and has been the organizer of several international workshops, competitions and tutorials. He is co-author of more than 100 publications in scientific journals and international conferences. He has won several IAPR best paper awards. With more than 4,500 citations, has an h-index of 37. <b><a href="http://scholar.google.com/citations?user=Uvxu49IAAAAJ&amp;hl=en">
-Google Citations Profile.
-</a></b></p>
-
+<p>He has served as program committee member in a dozen of international conferences and has been the organizer of several international workshops, competitions and tutorials. He is co-author of more than 100 publications in scientific journals and international conferences. He has won several IAPR best paper awards. With more than 4,500 citations, has an h-index of 37. <b><a href="http://scholar.google.com/citations?user=Uvxu49IAAAAJ&amp;hl=en"> Google Citations Profile. </a></b></p>
 <p>He has been a Teaching Assistant and an Adjunct Lecturer at the Computer Science Department of the Universitat Aut&ograve;noma de Barcelona since 2005. He has received the accreditations for Lecturer and Tenured Assistant from AQU in 2010 and 2017 respectively and the Ma&icirc;tre de Conf&eacute;rence accreditation from the Education Ministry from France.</p>
-
-<p>He has participated in several entrepreneurship programs aimed at transfering <i>Intelligent Reading Systems</i> research and innovations from academia to industry. In 2019 he co-founded the spin-off company <b><a href="http://www.allread.ai">AllRead</a></b> where he currently is the CTO. He is a member of the ELLIS Society, the European Laboratory for Learning and Intelligent Systems.</p>
-
-<hr/>
-<br>
-<h2>Journal Papers</h2>
-<ol type="1">
-
-
-<div id="pub">
-<a href="https://doi.org/10.1016/j.patcog.2023.109419">
-<name><li> VLCDoC: Vision-Language contrastive pre-training model for cross-Modal document classification </name><br></a>
-<authors> S. Bakkali, Z. Ming, M. Coustaty, M. Rusi&ntilde;ol and O. Ramos </authors>.
-<journal>Pattern Recognition</journal>, 139, (July 2023).<br>
-<links>| <a href="./pdfs/PR2023.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="https://doi.org/10.1016/j.patcog.2022.108766">
-<name><li> Pay Attention to What You Read: Non-recurrent Handwritten Text-Line Recognition </name><br></a>
-<authors>L. Kang, P. Riba, M. Rusi&ntilde;ol, A. Forn&eacute;s and M. Villegas</authors>.
-<journal>Pattern Recognition</journal>, 129, (September 2022).<br>
-<links>| <a href="./pdfs/PR2022.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/TPAMI.2021.3122572">
-<name><li> Content and Style Aware Generation of Text-line Images for Handwriting Recognition </name><br></a>
-<authors>L. Kang, P. Riba, M. Rusi&ntilde;ol, A. Forn&eacute;s and M. Villegas</authors>.
-<journal>IEEE Transactions on Pattern Analysis and Machine Intelligence</journal>, 44(12):8846-8860, (December 2022).<br>
-<links>| <a href="./pdfs/PAMI2021.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1016/j.patrec.2021.06.026">
-<name><li> Multimodal Grid Features and Cell Pointers for Scene Text Visual Question Answering </name><br></a>
-<authors>L. G&oacute;mez, A.F. Biten, R. Tito, A. Mafla, M. Rusi&ntilde;ol, E. Valveny and D. Karatzas</authors>.
-<journal>Pattern Recognition Letters</journal>, 150, (October 2021).<br>
-<links>| <a href="./pdfs/PRL21.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1016/j.patcog.2020.107790">
-<name><li> Candidate Fusion: Integrating Language Modelling Into a Sequence-to-Sequence Handwritten Word Recognition Architecture </name><br></a>
-<authors>L. Kang, P. Riba, M. Villegas, A. Forn&eacute;s and M. Rusi&ntilde;ol</authors>.
-<journal>Pattern Recognition</journal>, 112, (April 2021).<br>
-<links>| <a href="./pdfs/PR21.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/s10032-021-00378-0">
-<name><li> EAML: Ensemble Self-Attention-Based Mutual Learning Network for Document Image Classification </name><br></a>
-<authors>S. Bakkali, Z. Ming, M. Coustaty and M. Rusi&ntilde;ol</authors>.
-<journal>International Journal on Document Analysis and Recognition</journal>, 24:251-268, (June 2021).<br>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1016/j.patcog.2020.107656">
-<name><li> Real-time Lexicon-free Scene Text Retrieval </name><br></a>
-<authors>A. Mafla, R. Tito, S. Dey, L. G&oacute;mez, M. Rusi&ntilde;ol, E. Valveny and D. Karatzas</authors>.
-<journal>Pattern Recognition</journal>, 110, (February 2021).<br>
-<links>| <a href="./pdfs/PR21b.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="https://www.csmc.uni-hamburg.de/publications/mc/mc15.html">
-<name><li> On Avoiding Segmentation in Handwritten Keyword Spotting: Overview and Perspectives </name><br></a>
-<authors>M. Rusi&ntilde;ol</authors>.
-<journal>Manuscript Cultures</journal>, 15:5-11, (2020).<br>
-<div style="clear:both"></div></div>
-
-<div id="pub">
-<a href="http://www.cobdc.org/publica/item/item65-66.html">
-<name><li> Classificaci&oacute; sem&agrave;ntica i visual de documents digitals </name><br></a>
-<authors>M. Rusi&ntilde;ol</authors>.
-<journal>Item: revista de biblioteconomia i documentaci&oacute;</journal>, 65-66, (2019).<br>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/s10851-018-0837-6">
-<name><li> Feature Extraction by Using Dual-Generalized Discriminative Common Vectors </name><br></a>
-<authors>K. Diaz-Chito, J. Mart&iacute;nez del Rinc&oacute;n, M. Rusi&ntilde;ol and A. Hern&aacute;ndez-Sabat&eacute;</authors>.
-<journal>Journal of Mathematical Imaging and Vision</journal>, 61(3):331-351, (March 2019).<br>
-<links>| <a href="./pdfs/JMIV2019.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="https://publicaciones.acal.es/tabula/issue/view/66">
-<name><li> Avances en clasificaci&oacute;n de im&aacute;genes en los &uacute;ltimos diez a&ntilde;os. Perspectivas y limitaciones en el &aacute;mbito de archivos fotogr&aacute;ficos hist&oacute;ricos </name><br></a>
-<authors>M. Rusi&ntilde;ol and L. Gomez</authors>.
-<journal>T&aacute;bula, Revista anual de la Asociaci&oacute;n de Archiveros de Castilla y Le&oacute;n</journal>, 21:161-174, (2018).<br>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/s11042-017-4991-4">
-<name><li> Augmented Songbook: an Augmented Reality Educational Application for Raising Music Awareness </name><br></a>
-<authors>M. Rusi&ntilde;ol, J. Chazalon and K. Diaz-Chito</authors>.
-<journal>Multimedia Tools and Applications</journal>, 77(11):13773-13798, (June 2018).<br>
-<links>| <a href="./pdfs/MTAP17.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/s10851-017-0771-z">
-<name><li> Fast Kernel Generalized Discriminative Common Vectors for Feature Extraction </name><br></a>
-<authors>K. Diaz-Chito, J. Mart&iacute;nez del Rinc&oacute;n, A. Hern&aacute;ndez-Sabat&eacute;, M. Rusi&ntilde;ol and F.J. Ferri</authors>.
-<journal>Journal of Mathematical Imaging and Vision</journal>, 60(4):512-524, (May 2018).<br>
-<links>| <a href="./pdfs/JMIV18.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://www.arxivers.com/index.php/documents/publicacions/revista-lligall-1/lligall-39">
-<name><li> La Visi&oacute; per Computador com a Eina per a la Interpretaci&oacute; Autom&agrave;tica de Fonts Documentals </name><br></a>
-<authors>A Forn&eacute;s, J. Llad&oacute;s, O. Ramos and M. Rusi&ntilde;ol</authors>.
-<journal>Lligall, Revista Catalana d'Arxiv&iacute;stica</journal>, 39:20-46, (Januray 2016).<br>
-<links>| <a href="./pdfs/lligall16.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/s10032-015-0245-z">
-<name><li> A Study of Bag-of-Visual-Words Representations for Handwritten Keyword Spotting </name><br></a>
-<authors>D. Aldavert, M. Rusi&ntilde;ol, R. Toledo and J. Llad&oacute;s</authors>.
-<journal>International Journal on Document Analysis and Recognition</journal>, 18(3):223-234, (September 2015).<br>
-<links>| <a href="./pdfs/IJDAR15.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1016/j.patcog.2014.08.021">
-<name><li> Efficient segmentation-free keyword spotting in historical document collections </name><br></a>
-<authors>M. Rusi&ntilde;ol, D. Aldavert, R. Toledo and J. Llad&oacute;s</authors>.
-<journal>Pattern Recognition</journal>, 48(2):545-555, (February 2015).<br>
-<links>| <a href="./pdfs/PR15.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="https://www.manuscript-cultures.uni-hamburg.de/mc_e.html">
-<name><li> A Two-stage Approach to Segmentation-Free Query-by-example Word Spotting </name><br></a>
-<authors>L. Rothacker, M. Rusi&ntilde;ol, J. Llad&oacute;s and G. Fink</authors>.
-<journal>Manuscript Cultures</journal>, 7:47-58, (2014).<br>
-<links>| <a href="./pdfs/MC14.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/s10032-014-0225-8">
-<name><li> Multimodal page classification in administrative document image streams </name><br></a>
-<authors>M. Rusi&ntilde;ol, V. Frinken, D. Karatzas, A.D. Bagdanov and J. Llad&oacute;s</authors>.
-<journal>International Journal on Document Analysis and Recognition</journal>, 17(4):331-341, (December 2014).<br>
-<links>| <a href="./pdfs/IJDAR14.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/s10791-013-9234-3">
-<name><li> Flowchart Recognition for Non-Textual Information Retrieval in Patent Search </name><br></a>
-<authors>M. Rusi&ntilde;ol, L.P. de las Heras and O. Ramos</authors>.
-<journal>Information Retrieval</journal>, 17(5-6):545-562, (October 2014).<br>
-<links>| <a href="./pdfs/IR14.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1016/j.patcog.2013.07.008">
-<name><li> Boosting the Handwritten Word Spotting Experience by Including the User in the Loop </name><br></a>
-<authors>M. Rusi&ntilde;ol and J. Llad&oacute;s</authors>.
-<journal>Pattern Recognition</journal>, 47(3):1063-1072, (March 2014).<br>
-<links>| <a href="./pdfs/PR13.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1142/S0218001412630025">
-<name><li> On the Influence of Word Representations for Handwritten Word Spotting in Historical Documents </name><br></a>
-<authors>J. Llad&oacute;s, M. Rusi&ntilde;ol,  A. Forn&eacute;s, D. Fern&aacute;ndez and A. Dutta</authors>.
-<journal>International Journal of Pattern Recognition and Artificial Intelligence</journal>, 26(5):1263002.1-1263002.25, (August 2012).<br>
-<links>| <a href="./pdfs/IJPRAI12.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://www.e-perimetron.org/Vol_6_4/Vol6_4.htm">
-<name><li> Automatic Index Generation of Digitized Map Series by Coordinate Extraction and Interpretation </name><br></a>
-<authors>M. Rusi&ntilde;ol,  R. Roset, J. Llad&oacute;s and C. Montaner</authors>.
-<journal>e-Perimetron</journal>, 6(4):219-229, (December 2011).<br>
-<links>| <a href="./pdfs/E-PER11.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1016/j.patrec.2009.10.002">
-<name><li> Relational Indexing of Vectorial Primitives for Symbol Spotting in Line-Drawing Images </name><br></a>
-<authors>M. Rusi&ntilde;ol, A. Borr&aacute;s and J. Llad&oacute;s</authors>.
-<journal>Pattern Recognition Letters</journal>, 31(3):188-201, (February 2010).<br>
-<links>| <a href="./pdfs/PRL09.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/s10044-009-0161-2">
-<name><li> Symbol Spotting in Vectorized Technical Drawings Through a Lookup Table of Region Strings </name><br></a>
-<authors>M. Rusi&ntilde;ol, J. Llad&oacute;s and G. S&aacute;nchez</authors>.
-<journal>Pattern Analysis and Applications</journal>, 13(3):321-331, (August 2010).<br>
-<links>| <a href="./pdfs/PAA09.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/s10032-009-0083-y">
-<name><li> A Performance Evaluation Protocol for Symbol Spotting Systems in Terms of Recognition and Location Indices </name><br></a>
-<authors>M. Rusi&ntilde;ol and J. Llad&oacute;s</authors>.
-<journal>International Journal on Document Analysis and Recognition</journal>, 12(2):83-96, (July 2009).<br>
-<links>| <a href="./pdfs/IJDAR09.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
+<p>He has participated in several entrepreneurship programs aimed at transferring <i>Intelligent Reading Systems</i> research and innovations from academia to industry. In 2019 he co-founded the spin-off company <b><a href="http://www.allread.ai">AllRead</a></b> where he currently is the CTO. He is a member of the ELLIS Society, the European Laboratory for Learning and Intelligent Systems.</p>
+<ul class="metrics">
+  <li><b>100+</b><span>Publications</span></li>
+  <li><b>4,500+</b><span>Citations</span></li>
+  <li><b>37</b><span>h-index</span></li>
+  <li><b>20+</b><span>Research projects</span></li>
+  <li><b>15+</b><span>Transfer projects</span></li>
+</ul>
+</div>
+</section>
+<section id="journals">
+<h2>Journal Papers<span class="count">25</span></h2>
+<hr class="section-rule">
+<ol class="pubs">
+  <li>
+    <p class="pub-title"><a href="https://doi.org/10.1016/j.patcog.2023.109419">VLCDoC: Vision-Language contrastive pre-training model for cross-Modal document classification</a></p>
+    <p class="pub-authors">S. Bakkali, Z. Ming, M. Coustaty, M. Rusi&ntilde;ol and O. Ramos</p>
+    <p class="pub-meta"><span class="venue"><em>Pattern Recognition</em>, 139, (July 2023)</span> <a class="pdf" href="./pdfs/PR2023.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://doi.org/10.1016/j.patcog.2022.108766">Pay Attention to What You Read: Non-recurrent Handwritten Text-Line Recognition</a></p>
+    <p class="pub-authors">L. Kang, P. Riba, M. Rusi&ntilde;ol, A. Forn&eacute;s and M. Villegas</p>
+    <p class="pub-meta"><span class="venue"><em>Pattern Recognition</em>, 129, (September 2022)</span> <a class="pdf" href="./pdfs/PR2022.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/TPAMI.2021.3122572">Content and Style Aware Generation of Text-line Images for Handwriting Recognition</a></p>
+    <p class="pub-authors">L. Kang, P. Riba, M. Rusi&ntilde;ol, A. Forn&eacute;s and M. Villegas</p>
+    <p class="pub-meta"><span class="venue"><em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em>, 44(12):8846-8860, (December 2022)</span> <a class="pdf" href="./pdfs/PAMI2021.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1016/j.patrec.2021.06.026">Multimodal Grid Features and Cell Pointers for Scene Text Visual Question Answering</a></p>
+    <p class="pub-authors">L. G&oacute;mez, A.F. Biten, R. Tito, A. Mafla, M. Rusi&ntilde;ol, E. Valveny and D. Karatzas</p>
+    <p class="pub-meta"><span class="venue"><em>Pattern Recognition Letters</em>, 150, (October 2021)</span> <a class="pdf" href="./pdfs/PRL21.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1016/j.patcog.2020.107790">Candidate Fusion: Integrating Language Modelling Into a Sequence-to-Sequence Handwritten Word Recognition Architecture</a></p>
+    <p class="pub-authors">L. Kang, P. Riba, M. Villegas, A. Forn&eacute;s and M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Pattern Recognition</em>, 112, (April 2021)</span> <a class="pdf" href="./pdfs/PR21.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/s10032-021-00378-0">EAML: Ensemble Self-Attention-Based Mutual Learning Network for Document Image Classification</a></p>
+    <p class="pub-authors">S. Bakkali, Z. Ming, M. Coustaty and M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>International Journal on Document Analysis and Recognition</em>, 24:251-268, (June 2021)</span></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1016/j.patcog.2020.107656">Real-time Lexicon-free Scene Text Retrieval</a></p>
+    <p class="pub-authors">A. Mafla, R. Tito, S. Dey, L. G&oacute;mez, M. Rusi&ntilde;ol, E. Valveny and D. Karatzas</p>
+    <p class="pub-meta"><span class="venue"><em>Pattern Recognition</em>, 110, (February 2021)</span> <a class="pdf" href="./pdfs/PR21b.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://www.csmc.uni-hamburg.de/publications/mc/mc15.html">On Avoiding Segmentation in Handwritten Keyword Spotting: Overview and Perspectives</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Manuscript Cultures</em>, 15:5-11, (2020)</span></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://www.cobdc.org/publica/item/item65-66.html">Classificaci&oacute; sem&agrave;ntica i visual de documents digitals</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Item: revista de biblioteconomia i documentaci&oacute;</em>, 65-66, (2019)</span></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/s10851-018-0837-6">Feature Extraction by Using Dual-Generalized Discriminative Common Vectors</a></p>
+    <p class="pub-authors">K. Diaz-Chito, J. Mart&iacute;nez del Rinc&oacute;n, M. Rusi&ntilde;ol and A. Hern&aacute;ndez-Sabat&eacute;</p>
+    <p class="pub-meta"><span class="venue"><em>Journal of Mathematical Imaging and Vision</em>, 61(3):331-351, (March 2019)</span> <a class="pdf" href="./pdfs/JMIV2019.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://publicaciones.acal.es/tabula/issue/view/66">Avances en clasificaci&oacute;n de im&aacute;genes en los &uacute;ltimos diez a&ntilde;os. Perspectivas y limitaciones en el &aacute;mbito de archivos fotogr&aacute;ficos hist&oacute;ricos</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol and L. Gomez</p>
+    <p class="pub-meta"><span class="venue"><em>T&aacute;bula, Revista anual de la Asociaci&oacute;n de Archiveros de Castilla y Le&oacute;n</em>, 21:161-174, (2018)</span></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/s11042-017-4991-4">Augmented Songbook: an Augmented Reality Educational Application for Raising Music Awareness</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, J. Chazalon and K. Diaz-Chito</p>
+    <p class="pub-meta"><span class="venue"><em>Multimedia Tools and Applications</em>, 77(11):13773-13798, (June 2018)</span> <a class="pdf" href="./pdfs/MTAP17.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/s10851-017-0771-z">Fast Kernel Generalized Discriminative Common Vectors for Feature Extraction</a></p>
+    <p class="pub-authors">K. Diaz-Chito, J. Mart&iacute;nez del Rinc&oacute;n, A. Hern&aacute;ndez-Sabat&eacute;, M. Rusi&ntilde;ol and F.J. Ferri</p>
+    <p class="pub-meta"><span class="venue"><em>Journal of Mathematical Imaging and Vision</em>, 60(4):512-524, (May 2018)</span> <a class="pdf" href="./pdfs/JMIV18.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://www.arxivers.com/index.php/documents/publicacions/revista-lligall-1/lligall-39">La Visi&oacute; per Computador com a Eina per a la Interpretaci&oacute; Autom&agrave;tica de Fonts Documentals</a></p>
+    <p class="pub-authors">A. Forn&eacute;s, J. Llad&oacute;s, O. Ramos and M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Lligall, Revista Catalana d'Arxiv&iacute;stica</em>, 39:20-46, (January 2016)</span> <a class="pdf" href="./pdfs/lligall16.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/s10032-015-0245-z">A Study of Bag-of-Visual-Words Representations for Handwritten Keyword Spotting</a></p>
+    <p class="pub-authors">D. Aldavert, M. Rusi&ntilde;ol, R. Toledo and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>International Journal on Document Analysis and Recognition</em>, 18(3):223-234, (September 2015)</span> <a class="pdf" href="./pdfs/IJDAR15.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1016/j.patcog.2014.08.021">Efficient segmentation-free keyword spotting in historical document collections</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, D. Aldavert, R. Toledo and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Pattern Recognition</em>, 48(2):545-555, (February 2015)</span> <a class="pdf" href="./pdfs/PR15.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://www.manuscript-cultures.uni-hamburg.de/mc_e.html">A Two-stage Approach to Segmentation-Free Query-by-example Word Spotting</a></p>
+    <p class="pub-authors">L. Rothacker, M. Rusi&ntilde;ol, J. Llad&oacute;s and G. Fink</p>
+    <p class="pub-meta"><span class="venue"><em>Manuscript Cultures</em>, 7:47-58, (2014)</span> <a class="pdf" href="./pdfs/MC14.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/s10032-014-0225-8">Multimodal page classification in administrative document image streams</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, V. Frinken, D. Karatzas, A.D. Bagdanov and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>International Journal on Document Analysis and Recognition</em>, 17(4):331-341, (December 2014)</span> <a class="pdf" href="./pdfs/IJDAR14.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/s10791-013-9234-3">Flowchart Recognition for Non-Textual Information Retrieval in Patent Search</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, L.P. de las Heras and O. Ramos</p>
+    <p class="pub-meta"><span class="venue"><em>Information Retrieval</em>, 17(5-6):545-562, (October 2014)</span> <a class="pdf" href="./pdfs/IR14.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1016/j.patcog.2013.07.008">Boosting the Handwritten Word Spotting Experience by Including the User in the Loop</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Pattern Recognition</em>, 47(3):1063-1072, (March 2014)</span> <a class="pdf" href="./pdfs/PR13.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1142/S0218001412630025">On the Influence of Word Representations for Handwritten Word Spotting in Historical Documents</a></p>
+    <p class="pub-authors">J. Llad&oacute;s, M. Rusi&ntilde;ol, A. Forn&eacute;s, D. Fern&aacute;ndez and A. Dutta</p>
+    <p class="pub-meta"><span class="venue"><em>International Journal of Pattern Recognition and Artificial Intelligence</em>, 26(5):1263002.1-1263002.25, (August 2012)</span> <a class="pdf" href="./pdfs/IJPRAI12.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://www.e-perimetron.org/Vol_6_4/Vol6_4.htm">Automatic Index Generation of Digitized Map Series by Coordinate Extraction and Interpretation</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, R. Roset, J. Llad&oacute;s and C. Montaner</p>
+    <p class="pub-meta"><span class="venue"><em>e-Perimetron</em>, 6(4):219-229, (December 2011)</span> <a class="pdf" href="./pdfs/E-PER11.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1016/j.patrec.2009.10.002">Relational Indexing of Vectorial Primitives for Symbol Spotting in Line-Drawing Images</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, A. Borr&aacute;s and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Pattern Recognition Letters</em>, 31(3):188-201, (February 2010)</span> <a class="pdf" href="./pdfs/PRL09.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/s10044-009-0161-2">Symbol Spotting in Vectorized Technical Drawings Through a Lookup Table of Region Strings</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, J. Llad&oacute;s and G. S&aacute;nchez</p>
+    <p class="pub-meta"><span class="venue"><em>Pattern Analysis and Applications</em>, 13(3):321-331, (August 2010)</span> <a class="pdf" href="./pdfs/PAA09.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/s10032-009-0083-y">A Performance Evaluation Protocol for Symbol Spotting Systems in Terms of Recognition and Location Indices</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>International Journal on Document Analysis and Recognition</em>, 12(2):83-96, (July 2009)</span> <a class="pdf" href="./pdfs/IJDAR09.pdf">PDF</a></p>
+  </li>
 </ol>
-
-
-<hr/>
-<br>
-<h2>Selected Publications in International Conferences and Workshops</h2>
-<ol type="1">
-
-<div id="pub">
-<a href="https://www.icdar2025.com/program/accepted-papers">
-<name><li> WildKhmerST: A Comprehensive Dataset and Benchmark for Khmer Scene Text Detection and Recognition in the Wild</name><br></a>
-<authors>V. Nom, S. Keo, S. Bakkali, M.M. Luqman, M. Coustaty, M. Rusi&ntilde;ol and J.M. Ogier</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</journal>, 2025.<br>
-<div style="clear:both"></div></div>
-
-<div id="pub">
-<a href="https://wacv2024.thecvf.com/">
-<name><li> State-of-the-Art Khmer Text Recognition Using Deep Learning Models</name><br></a>
-<authors>S. Keo, M. Coustaty, S. Bakkali and M. Rusi&ntilde;ol</authors>.
-In <journal>Proceedings of the ASEAN Conference on Emerging Technologies (ACET)</journal>, 2025.<br>
-<div style="clear:both"></div></div>
-
-<div id="pub">
-<a href="https://wacv2024.thecvf.com/">
-<name><li> GlobalDoc: A Cross-Modal Vision-Language Framework for Real-World Document Image Retrieval and Classification</name><br></a>
-<authors>S. Bakkali, S. Biswas, Z. Ming, M. Coustaty, M. Rusi&ntilde;ol, O. Ramos and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)</journal>, 2025.<br>
-<links>| <a href="./pdfs/WACV25.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-<div id="pub">
-<a href="https://wacv2024.thecvf.com/">
-<name><li> STEP - Towards Structured Scene-Text Spotting</name><br></a>
-<authors>S. Garcia-Bordils, D. Karatzas and M. Rusi&ntilde;ol</authors>.
-In <journal>Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)</journal>, 2024.<br>
-<links>| <a href="./pdfs/WACV24.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="https://icdar2023.org/">
-<name><li> Accelerating Transformer-Based Scene Text Detection and Recognition via Token Pruning</name><br></a>
-<authors>S. Garcia-Bordils, D. Karatzas and M. Rusi&ntilde;ol</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</journal>, 2023.<br>
-<links>| <a href="./pdfs/ICDAR23.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="https://sifed2023.sciencesconf.org/">
-<name><li> VLCDoC: Vision-Language contrastive pre-training model for cross-Modal document classification</name><br></a>
-<authors> S. Bakkali, Z. Ming, M. Coustaty, M. Rusi&ntilde;ol and O. Ramos </authors>.
-In <journal> Symposium International Francophone sur l'Ecrit et le Document(SIFED)</journal>, 2023.<br>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="https://doi.org/10.1007/978-3-031-06555-2_51">
-<name><li> Read While you Drive - Multilingual Text Tracking on the Road</name><br></a>
-<authors>S. Garcia-Bordils, G. Tom, S. Battu, M. Mathew, M. Rusi&ntilde;ol, C.V. Jawahar and D. Karatzas</authors>.
-In <journal>Proceedings of the International Workshop on Document Analysis Systems (DAS)</journal>, 2022.<br>
-<links>| <a href="./pdfs/DAS22.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICFHR2020.2020.00035">
-<name><li> Distilling Content from Style for Handwritten Word Recognition. </name><br></a>
-<authors> 
-L. Kang, P. Riba, M. Rusi&ntilde;ol, A. Forn&eacute;s and M. Villegas</authors>.
-In <journal>Proceedings of the International Conference on Frontiers in Handwriting Recognition (ICFHR)</journal>, 2020. <b><font color="FF0000">Best Paper Award</font></b>.<br>
-<links>| <a href="./pdfs/ICFHR20.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/978-3-030-58592-1_17">
-<name><li> GANwriting: Content-Conditioned Generation of Styled Handwritten Word Images. </name><br></a>
-<authors> 
-L. Kang, P. Riba, Y. Wang, M. Rusi&ntilde;ol, A. Forn&eacute;s and M. Villegas</authors>.
-In <journal>Proceedings of the European Conference on Computer Vision (ECCV)</journal>, 2020.<br>
-<links>| <a href="./pdfs/ECCV20.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICIP40778.2020.9191268">
-<name><li> Cross-Modal Deep Networks For Document Image Classification. </name><br></a>
-<authors> 
-S. Bakkali, Z. Ming, M. Coustaty and M. Rusi&ntilde;ol</authors>.
-In <journal>Proceedings of the IEEE International Conference on Image Processing (ICIP)</journal>, 2020.<br>
-<links>| <a href="./pdfs/ICIP20.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/CVPRW50498.2020.00289">
-<name><li> Visual and Textual Deep Feature Fusion for Document Image Classification. </name><br></a>
-<authors> 
-S. Bakkali, Z. Ming, M. Coustaty and M. Rusi&ntilde;ol</authors>.
-In <journal>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW-WTDDLE)</journal>, 2020.<br>
-<links>| <a href="./pdfs/CVPRW20.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICRA40945.2020.9196577">
-<name><li> RoadText-1K: Text Detection and Recognition Dataset for Driving Videos. </name><br></a>
-<authors> 
-S. Reddy, M. Mathew, L. Gomez, M. Rusi&ntilde;ol, D. Karatzas and C.V. Jawahar</authors>.
-In <journal>Proceedings of the IEEE International Conference on Robotics and Automation (ICRA)</journal>, 2020.<br>
-<links>| <a href="./pdfs/ICRA20.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/WACV45572.2020.9093392">
-<name><li> Unsupervised Writer Adaptation for Synthetic-to-Real Handwritten Word Recognition. </name><br></a>
-<authors> 
-L. Kang, M. Rusi&ntilde;ol, A. Forn&eacute;s, P. Riba and M. Villegas</authors>.
-In <journal>Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)</journal>, 2020.<br>
-<links>| <a href="./pdfs/WACV20.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="https://www.bmvc2019.org/wp-content/VAIE2019/VAIE2019_3.pdf">
-<name><li> Automatic Structured Text Reading for License Plates and Utility Meters. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol, L. Gomez, A. Landman, M. Silva-Constenla and D. Karatzas</authors>.
-In <journal>Proceedings of the BMVC Workshop on Visual Artificial Intelligence and Entrepreneurship, (BMVC-VAIE)</journal>, 2019.<br>
-<links>| <a href="./pdfs/BMVCVAIE19.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="">
-<name><li> ICDAR 2019 Competition on Scene Text Visual Question Answering. </name><br></a>
-<authors> 
-A.F. Biten, R. Tito, A. Mafla, L. Gomez, M. Rusi&ntilde;ol, M. Mathew, C.V. Jawahar, E. Valveny and D. Karatzas</authors>.
-In <journal>Proceedings of the ICCV Workshop on Closing the loop between Vision and Language (ICCV-CLVL)</journal>, 2019.<br>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="https://doi.org/10.1109/ICCV.2019.00439">
-<name><li> Scene Text Visual Question Answering. </name><br></a>
-<authors> 
-A.F. Biten, R. Tito, A. Mafla, L. Gomez, M. Rusi&ntilde;ol, C.V. Jawahar, E. Valveny and D. Karatzas</authors>.
-In <journal>Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)</journal>, 2019.<br>
-<links>| <a href="./pdfs/ICCV19.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="https://doi.org/10.1109/ICDAR.2019.00251">
-<name><li> ICDAR 2019 Competition on Scene Text Visual Question Answering. </name><br></a>
-<authors> 
-A.F. Biten, R. Tito, A. Mafla, L. Gomez, M. Rusi&ntilde;ol, M. Mathew, C.V. Jawahar, E. Valveny and D. Karatzas</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</journal>, 2019.<br>
-<links>| <a href="./pdfs/ICDAR19b.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="https://doi.org/10.1109/ICDAR.2019.00134">
-<name><li> Selective Text Style Transfer. </name><br></a>
-<authors> 
-R. Gomez, A.F. Biten, L. Gomez, J. Gibert, M. Rusi&ntilde;ol and D. Karatzas</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</journal>, 2019.<br>
-<links>| <a href="./pdfs/ICDAR19.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="https://doi.org/10.1145/3323873.3325035">
-<name><li> Self-Supervised Visual Representations for Cross-Modal Retrieval. </name><br></a>
-<authors> 
-Y. Patel, L. Gomez, M. Rusi&ntilde;ol, D. Karatzas and C.V. Jawahar</authors>.
-In <journal>Proceedings of the ACM International Conference on Multimedia Retrieval (ICMR)</journal>, 2019.<br>
-<links>| <a href="./pdfs/ICMR19.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="https://doi.org/10.1109/CVPR.2019.01275">
-<name><li> Good News, Everyone! Context driven entity-aware captioning for news images. </name><br></a>
-<authors> 
-A.F. Biten, L. Gomez, M. Rusi&ntilde;ol and D. Karatzas</authors>.
-In <journal>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</journal>, 2019.<br>
-<links>| <a href="./pdfs/CVPR19.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://www.girona.cat/sgdap/cat/jornades_actes_fitxa?acta=11176">
-<name><li> Subtitulaci&oacute; autom&agrave;tica d'imatges. Estat de l'art i limitacions en el context arxiv&iacute;stic. </name><br></a>
-<authors> 
-L. Gomez, M. Rusi&ntilde;ol, A.F. Biten and D. Karatzas</authors>.
-In <journal>Proceedings of the Jornades Antoni Var&eacute;s: Imatge i Recerca</journal>, 2018.<br>
-<links>| <a href="./pdfs/IR18.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/978-3-030-12939-2_32">
-<name><li> Convolve, Attend and Spell: An Attention-based Sequence-to-Sequence Model for Handwritten Word Recognition. </name><br></a>
-<authors> 
-L. Kang, J.I. Toledo, P. Riba, M. Villegas, A. Forn&eacute;s and M. Rusi&ntilde;ol</authors>.
-In <journal>Proceedings of the German Conference on Pattern Recognition (GCPR)</journal>, 2018.<br>
-<links>| <a href="./pdfs/GCPR18.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="https://doi.org/10.1007/978-3-030-01264-9_43">
-<name><li> Single Shot Scene Text Retrieval. </name><br></a>
-<authors> 
-L. Gomez, A. Mafla, M. Rusi&ntilde;ol and D. Karatzas</authors>.
-In <journal>Proceedings of the European Conference on Computer Vision (ECCV)</journal>, 2018.<br>
-<links>| <a href="./pdfs/ECCV18.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/DAS.2018.23">
-<name><li> Cutting Sayre's Knot: Reading Scene Text without Segmentation. Application to Utility Meters. </name><br></a>
-<authors> 
-L. Gomez, M. Rusi&ntilde;ol and D. Karatzas</authors>.
-In <journal>Proceedings of the IAPR International Workshop on Document Analysis Systems (DAS)</journal>, 2018.<br>
-<links>| <a href="./pdfs/DAS18a.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/DAS.2018.22">
-<name><li> The Robust Reading Competition Annotation and Evaluation Platform. </name><br></a>
-<authors> 
-D. Karatzas, L. Gomez, M. Rusi&ntilde;ol and A. Nicolaou</authors>.
-In <journal>Proceedings of the IAPR International Workshop on Document Analysis Systems (DAS)</journal>, 2018.<br>
-<links>| <a href="./pdfs/DAS18b.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/DAS.2018.24">
-<name><li> Manuscript text line detection and segmentation using second-order derivatives analysis. </name><br></a>
-<authors> 
-D. Aldavert and M. Rusi&ntilde;ol</authors>.
-In <journal>Proceedings of the IAPR International Workshop on Document Analysis Systems (DAS)</journal>, 2018.<br>
-<links>| <a href="./pdfs/DAS818c.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/DAS.2018.25">
-<name><li> Synthetically generated semantic codebook for Bag-of-Visual-Words based word spotting. </name><br></a>
-<authors> 
-D. Aldavert and M. Rusi&ntilde;ol</authors>.
-In <journal>Proceedings of the IAPR International Workshop on Document Analysis Systems (DAS)</journal>, 2018.<br>
-<links>| <a href="./pdfs/DAS18d.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/DAS.2018.29">
-<name><li> Field Extraction by hybrid incremental and a-priori structural templates. </name><br></a>
-<authors> 
-V. Poulain d'Andecy, E. Hartmann and M. Rusi&ntilde;ol</authors>.
-In <journal>Proceedings of the IAPR International Workshop on Document Analysis Systems (DAS)</journal>, 2018.<br>
-<links>| <a href="./pdfs/DAS18e.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="">
-<name><li> The Robust Reading Competition Annotation and Evaluation Platform. </name><br></a>
-<authors> 
-D. Karatzas, L. Gomez and M. Rusi&ntilde;ol</authors>.
-In <journal>Proceedings of the International Workshop on Open Services and Tools for Document Analysis (ICDAR-OST)</journal>, 2017.<br>
-<links>| <a href="./pdfs/OST17b.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2017.306">
-<name><li> SmartDoc 2017 Video Capture: Mobile Document Acquisition in Video Mode. </name><br></a>
-<authors> 
-J. Chazalon, P. Gomez-Kr&auml;mer, J.C. Burie, M. Coustaty, S. Eskenazi, M. Luqman, N. Nayef, M. Rusi&ntilde;ol, N. Sid&egrave;re and J.M. Ogier</authors>.
-In <journal>Proceedings of the IAPR International Workshop on Open Services and Tools for Document Analysis (ICDAR-OST)</journal>, 2017.<br>
-<links>| <a href="./pdfs/OST17.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2017.88">
-<name><li> LSDE: Levenshtein Space Deep Embedding for Query-by-string Word Spotting. </name><br></a>
-<authors> 
-L. Gomez, M. Rusi&ntilde;ol and D. Karatzas</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR) </journal>, 2017.<br>
-<links>| <a href="./pdfs/ICDAR17c.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2017.64">
-<name><li> Benchmarking Keypoint Filtering Approaches for Document Image Matching. </name><br></a>
-<authors> 
-E. Royer, J. Chazalon, M. Rusi&ntilde;ol and F. Bouchara</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR) </journal>, 2017. <b><font color="FF0000">Best Poster Award</font></b>.<br>
-<links>| <a href="./pdfs/ICDAR17a.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2017.23">
-<name><li> Automatic Static/Variable Content Separation in Administrative Document Images. </name><br></a>
-<authors> 
-D. Aldavert, M. Rusi&ntilde;ol and R. Toledo</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR) </journal>, 2017.<br>
-<links>| <a href="./pdfs/ICDAR17b.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="https://doi.org/10.1109/CVPR.2017.218">
-<name><li> Self-supervised learning of visual features through embedding images into text topic spaces. </name><br></a>
-<authors>
-Y. Patel, L. Gomez, M. Rusi&ntilde;ol, C.V. Jawahar and D. Karatzas</authors>.
-In <journal>Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)</journal>, 2017.<br>
-<links>| <a href="./pdfs/CVPR17.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/978-3-319-46604-0_29">
-<name><li> Dynamic Lexicon Generation for Natural Scene Images. </name><br></a>
-<authors> 
-Y. Patel, L. Gomez, M. Rusi&ntilde;ol and D. Karatzas</authors>.
-In <journal>Proceedings of the ECCV International Workshop on Robust Reading (ECCV-IWRR)</journal>, 2016.<br>
-<links>| <a href="./pdfs/IWRR16.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="">
-<name><li> Filtrage de descripteurs locaux pour l'am&eacute;lioration de la d&eacute;tection de documents. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol, J. Chazalon and J.M. Ogier</authors>.
-In <journal>Proceedings of the Colloque International Francophone sur l'&eacute;crit et le Document (CIFED)</journal>, 2016.<br>
-<links>| <a href="./pdfs/CIFED16.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/DAS.2016.65">
-<name><li> Human-Document Interaction - a new frontier for document image analysis. </name><br></a>
-<authors> 
-D. Karatzas, V.P. d'Andecy and M. Rusi&ntilde;ol</authors>.
-In <journal>Proceedings of the International Workshop on Document Analysis Systems (DAS)</journal>, 2016.<br>
-<links>| <a href="./pdfs/DAS16b.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/DAS.2016.66">
-<name><li> Delaunay triangulation-based features for Camera-based document image retrieval system. </name><br></a>
-<authors> 
-Q. Bao, M. Rusi&ntilde;ol, M. Coustaty, M.M. Luqman C.D. Tran and J.M. Ogier</authors>.
-In <journal>Proceedings of the International Workshop on Document Analysis Systems (DAS)</journal>, 2016.<br>
-<links>| <a href="./pdfs/DAS16a.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/978-3-319-27863-6_30">
-<name><li> Automatic Verification of Properly Signed Multi-page Document Images. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol, D. Karatzas and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the International Symposium on Visual Computing (ISVC)</journal>, 2015.<br>
-<links>| <a href="./pdfs/ISVC15.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2015.7333957">
-<name><li> Improving Document Matching Performance by Local Descriptor Filtering. </name><br></a>
-<authors> 
-J. Chazalon, M. Rusi&ntilde;ol and J.M. Ogier</authors>.
-In <journal>Proceedings of the International Workshop on Camera-Based Document Analysis and Recognition (CBDAR)</journal>, 2015.<br>
-<links>| <a href="./pdfs/CBDAR15.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2015.7333943">
-<name><li> ICDAR2015 Competition on Smartphone Document Capture and OCR (SmartDoc). </name><br></a>
-<authors> 
-J.C. Burie, J. Chazalon, M. Coustaty, S. Eskenazi, M.M. Luqman, M. Mehri, N. Nayef, J.M. Ogier, S. Prum and M. Rusi&ntilde;ol</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</journal>, 2015.<br>
-<links>| <a href="./pdfs/ICDAR15e.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2015.7333812">
-<name><li> Towards Query-by-Speech Handwritten Keyword Spotting. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol, D. Aldavert, R. Toledo and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</journal>, 2015.<br>
-<links>| <a href="./pdfs/ICDAR15d.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2015.7333808">
-<name><li> Novel Line Verification for Multiple Instance Focused Retrieval in Document Collections. </name><br></a>
-<authors> 
-H. Gao, M. Rusi&ntilde;ol, D. Karatzas, J. Llad&oacute;s, R. Jain and D. Doermann</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</journal>, 2015.<br>
-<links>| <a href="./pdfs/ICDAR15c.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2015.7333831">
-<name><li> A Comparative Study of Local Detectors and Descriptors for Mobile Document Classification. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol, J. Chazalon, J.M. Ogier and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</journal>, 2015.<br>
-<links>| <a href="./pdfs/ICDAR15b.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2015.7333836">
-<name><li> A Semi-Automatic Groundtruthing Tool for Mobile-Captured Document Segmentation. </name><br></a>
-<authors> 
-J. Chazalon, M. Rusi&ntilde;ol, J.M. Ogier and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</journal>, 2015.<br>
-<links>| <a href="./pdfs/ICDAR15a.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICPR.2014.500">
-<name><li> Embedding Document Structure to Bag-of-Words through Pair-wise Stable Key-regions. </name><br></a>
-<authors> 
-H. Gao, M. Rusi&ntilde;ol, D. Karatzas and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the International Conference on Pattern Recognition (ICPR)</journal>, 2014.<br>
-<links>| <a href="./pdfs/ICPR14.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/DAS.2014.11">
-<name><li> Combining Focus Measure Operators to Predict OCR Accuracy in Mobile-Captured Document Images. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol, J. Chazalon and J.M. Ogier</authors>.
-In <journal>Proceedings of the IAPR International Workshop on Document Analysis Systems (DAS)</journal>, 2014.<br>
-<links>| <a href="./pdfs/DAS14.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="">
-<name><li> Normalisation et validation d'images de documents captur&eacute;es en mobilit&eacute;. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol, J. Chazalon and J.M. Ogier</authors>.
-In <journal>Proceedings of the Colloque International Francophone sur l'&eacute;crit et le Document (CIFED)</journal>, 2014.<br>
-<links>| <a href="./pdfs/CIFED14.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1117/12.2042458">
-<name><li> Fast structural matching for document image retrieval through spatial database. </name><br></a>
-<authors> 
-H. Gao, M. Rusi&ntilde;ol, D. Karatzas and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the International Conference on Document Recognition and Retrieval (DRR)</journal>, 2014.<br>
-<links>| <a href="./pdfs/DRR14.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2013.264">
-<name><li> Bag-of-Features HMMs for segmentation-free word spotting in handwritten documents. </name><br></a>
-<authors> 
-L. Rothacker, M. Rusi&ntilde;ol and G.A. Fink</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</journal>, 2013.<br>
-<links>| <a href="./pdfs/ICDAR13e.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2013.53">
-<name><li> Key-region Detection for Document Images -- Application to Administrative Document Retrieval. </name><br></a>
-<authors> 
-H. Gao, M. Rusi&ntilde;ol,  D. Karatzas, J. Llad&oacute;s, T. Sato, M. Iwamura and K. Kise</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</journal>, 2013.<br>
-<links>| <a href="./pdfs/ICDAR13d.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2013.128">
-<name><li> Document Classification and Page Stream Segmentation for Digital Mailroom Applications. </name><br></a>
-<authors> 
-A. Gordo, M. Rusi&ntilde;ol, D. Karatzas and A. Bagdanov</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</journal>, 2013.<br>
-<links>| <a href="./pdfs/ICDAR13c.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2013.223">
-<name><li> Field Extraction from Administrative Documents by Incremental Structural Templates. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol, T. Benkhelfallah and V. Poulain d'Andecy</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</journal>, 2013.<br>
-<links>| <a href="./pdfs/ICDAR13b.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2013.108">
-<name><li> Integrating Visual and Textual Cues for Query-by-String Word Spotting. </name><br></a>
-<authors> 
-D. Aldavert, M. Rusi&ntilde;ol, R. Toledo and J. Llad&oacute;s. </authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</journal>, 2013.<br>
-<links>| <a href="./pdfs/ICDAR13a.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/978-3-662-44854-0_1">
-<name><li> Spotting Graphical Symbols in Camera-Acquired Documents in Real Time. </name><br></a>
-<authors>
-M. Rusi&ntilde;ol, D. Karatzas and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the IAPR International Workshop on Graphics Recognition (GREC)</journal>, 2014.<br>
-<links>| <a href="./pdfs/GREC13.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/978-3-642-36824-0_5">
-<name><li> Classification of Administrative Document Images by Logo Identification. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol, V. Poulain d'Andecy, D. Karatzas and J. Llad&oacute;s. </authors>.
-In <journal>Proceedings of the IAPR International Workshop on Graphics Recognition (GREC)</journal>, 2013.<br>
-<links>| <a href="./pdfs/GREC11.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="">
-<name><li> An Interactive Appearance-based Document Retrieval System for Historical Newspapers. </name><br></a>
-<authors> 
-H. Gao, M. Rusi&ntilde;ol, D. Karatzas, A. Antonacopoulos and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the International Conference on computer Vision Theory and Applications (VISAPP)</journal>, 2013.<br>
-<links>| <a href="./pdfs/VISAPP13.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="">
-<name><li> CVC-UAB's participation in the Flowchart Recognition Task of CLEF-IP 2012. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol, L. Pere de las Heras, J. Mas, O. Ramos Terrades, D. Karatzas, A. Dutta, G. S&aacute;nchez and J. Llad&oacute;s</authors>.
-In <journal>Working Notes of the CLEF Conference and Labs of the Evaluation Forum (CLEF)</journal>, 2012.<br>
-<links>| <a href="./pdfs/CLEF12.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://ieeexplore.ieee.org/document/6460186/">
-<name><li> Multipage Document Retrieval by Textual and Visual Representations. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol, D. Karatzas, A.D. Bagdanov and J. Llad&oacute;s. </authors>.
-In <journal>Proceedings of the International Conference On Pattern Recognition (ICPR)</journal>, 2012.<br>
-<links>| <a href="./pdfs/ICPR12.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICFHR.2012.282">
-<name><li> The Role of the Users in Handwritten Word Spotting Applications: Query Fusion and Relevance Feedback. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol and J. Llad&oacute;s. </authors>.
-In <journal>Proceedings of the International Conference On Frontiers in Handwrittem Recognition (ICFHR)</journal>, 2012.<br>
-<links>| <a href="./pdfs/ICFHR12.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2011.22">
-<name><li> Browsing Heterogeneous Document Collections by a Segmentation-free Word Spotting Method. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol, D. Aldavert, R. Toledo and J. Llad&oacute;s. </authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</journal>, 2011. <b><font color="FF0000">Best Paper Award</font></b>.<br>
-<links>| <a href="./pdfs/ICDAR11.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/978-3-642-20161-5_32">
-<name><li> Interactive Trademark Image Retrieval by Fusing Semantic and Visual Content. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol, D. Aldavert, D. Karatzas, R. Toledo and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the European Conference on Information Retrieval (ECIR)</journal>, 2011.<br>
-<links>| <a href="./pdfs/ECIR11.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="">
-<name><li> Automatic Index Generation of Digitized Map Series by Coordinate Extraction and Interpretation. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol,  R. Roset, J. Llad&oacute;s and C. Montaner</authors>.
-In <journal>Proceedings of the International Workshop on Digital Technologies in Cartographic Heritage (DACH)</journal>, 2011.<br>
-<links>| <a href="./pdfs/E-PER11.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICPR.2010.394">
-<name><li> Perceptual Image Retrieval by Adding Color Information to the Shape Context Descriptor. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol, F. Noorbakhsh, D. Karatzas, E. Valveny and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the IAPR International Conference on Pattern Recognition (ICPR)</journal>, 2010.<br>
-<links>| <a href="./pdfs/ICPR10.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1145/1815330.1815358">
-<name><li> Efficient Logo Retrieval Through Hashing Shape Context Descriptors. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the IAPR International Workshop on Document Analysis Systems (DAS)</journal>, 2010.<br>
-<links>| <a href="./pdfs/DAS10a.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1145/1815330.1815379">
-<name><li> A Kernel-based Approach to Document Retrieval. </name><br></a>
-<authors> 
-A. Gordo, J. Gibert, E. Valveny and M. Rusi&ntilde;ol</authors>.
-In <journal>Proceedings of the IAPR International Workshop on Document Analysis Systems (DAS)</journal>, 2010.<br>
-<links>| <a href="./pdfs/DAS10b.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/978-3-642-13728-0_17">
-<name><li> Symbol Recognition by Using a Concept Lattice of Graphical Patterns. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol, K. Bertet, J.M. Ogier and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the IAPR International Workshop on Graphics Recognition (GREC)</journal>, 2010.<br>
-<links>| <a href="./pdfs/GREC10.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2009.103">
-<name><li> Logo Spotting by a Bag-of-words Approach for Document Categorization. </name><br></a>
-<authors> 
-M. Rusi&ntilde;ol and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</journal>, 2009.<br>
-<links>| <a href="./pdfs/ICDAR09.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICPR.2008.4760957">
-<name><li> Segmentation Robust to the Vignette Effect for Machine Vision Systems. </name><br></a>
-<authors> 
-D. Karatzas, M. Rusi&ntilde;ol, C. Antens and M. Ferrer</authors>.
-In <journal>Proceedings of the IAPR International Conference on Pattern Recognition (ICPR)</journal>, 2008.<br>
-<links>| <a href="./pdfs/ICPR08.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/DAS.2008.24">
-<name><li> Word and Symbol Spotting Using Spatial Organization of Local Descriptors. </name><br></a>
-<authors>
-M. Rusi&ntilde;ol and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the IAPR Workshop on Document Analysis Systems (DAS)</journal>, 2008.<br>
-<links>| <a href="./pdfs/DAS08.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/978-3-540-88188-9_11">
-<name><li> A Region-Based Hashing Approach for Symbol Spotting in Technical Documents. </name><br></a>
-<authors>
-M. Rusi&ntilde;ol and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the IAPR International Workshop on Graphics Recognition (GREC)</journal>, 2008.<br> 
-<links>| <a href="./pdfs/GREC08.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1109/ICDAR.2007.76">
-<name><li> Camera-Based Graphical Symbol Detection. </name><br></a>
-<authors>
-M. Rusi&ntilde;ol, J. Llad&oacute;s and P. Dosch</authors>.
-In <journal>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</journal>, 2007.<br>
-<links>| <a href="./pdfs/ICDAR07.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/978-3-540-72849-8_27">
-<name><li> Boundary Shape Recognition Using Accumulated Length and Angle Information. </name><br></a>
-<authors>
-M. Rusi&ntilde;ol, P. Dosch and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the Iberian Conference on Pattern Recognition and Image Analysis (IBPRIA)</journal>, 2007.<br>
-<links>| <a href="./pdfs/IBPRIA07.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/11767978_4">
-<name><li> Symbol Spotting in Technical Drawings Using Vectorial Signatures. </name><br></a>
-<authors>
-M. Rusi&ntilde;ol and J. Llad&oacute;s</authors>.
-In <journal>Proceedings of the IAPR International Workshop on Graphics Recognition (GREC)</journal>, 2006.<br>
-<links>| <a href="./pdfs/GREC06.pdf">Paper</a> |</links>
-<div style="clear:both"></div></div>
+</section>
+<section id="conferences">
+<h2>Selected Publications in International Conferences and Workshops<span class="count">74</span></h2>
+<hr class="section-rule">
+<ol class="pubs">
+  <li>
+    <p class="pub-title"><a href="https://www.icdar2025.com/program/accepted-papers">WildKhmerST: A Comprehensive Dataset and Benchmark for Khmer Scene Text Detection and Recognition in the Wild</a></p>
+    <p class="pub-authors">V. Nom, S. Keo, S. Bakkali, M.M. Luqman, M. Coustaty, M. Rusi&ntilde;ol and J.M. Ogier</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2025</span></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://wacv2024.thecvf.com/">State-of-the-Art Khmer Text Recognition Using Deep Learning Models</a></p>
+    <p class="pub-authors">S. Keo, M. Coustaty, S. Bakkali and M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the ASEAN Conference on Emerging Technologies (ACET)</em>, 2025</span></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://wacv2024.thecvf.com/">GlobalDoc: A Cross-Modal Vision-Language Framework for Real-World Document Image Retrieval and Classification</a></p>
+    <p class="pub-authors">S. Bakkali, S. Biswas, Z. Ming, M. Coustaty, M. Rusi&ntilde;ol, O. Ramos and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)</em>, 2025</span> <a class="pdf" href="./pdfs/WACV25.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://wacv2024.thecvf.com/">STEP - Towards Structured Scene-Text Spotting</a></p>
+    <p class="pub-authors">S. Garcia-Bordils, D. Karatzas and M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)</em>, 2024</span> <a class="pdf" href="./pdfs/WACV24.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://icdar2023.org/">Accelerating Transformer-Based Scene Text Detection and Recognition via Token Pruning</a></p>
+    <p class="pub-authors">S. Garcia-Bordils, D. Karatzas and M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2023</span> <a class="pdf" href="./pdfs/ICDAR23.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://sifed2023.sciencesconf.org/">VLCDoC: Vision-Language contrastive pre-training model for cross-Modal document classification</a></p>
+    <p class="pub-authors">S. Bakkali, Z. Ming, M. Coustaty, M. Rusi&ntilde;ol and O. Ramos</p>
+    <p class="pub-meta"><span class="venue"><em>Symposium International Francophone sur l'Ecrit et le Document (SIFED)</em>, 2023</span></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://doi.org/10.1007/978-3-031-06555-2_51">Read While you Drive - Multilingual Text Tracking on the Road</a></p>
+    <p class="pub-authors">S. Garcia-Bordils, G. Tom, S. Battu, M. Mathew, M. Rusi&ntilde;ol, C.V. Jawahar and D. Karatzas</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Workshop on Document Analysis Systems (DAS)</em>, 2022</span> <a class="pdf" href="./pdfs/DAS22.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICFHR2020.2020.00035">Distilling Content from Style for Handwritten Word Recognition</a></p>
+    <p class="pub-authors">L. Kang, P. Riba, M. Rusi&ntilde;ol, A. Forn&eacute;s and M. Villegas</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Frontiers in Handwriting Recognition (ICFHR)</em>, 2020</span> <span class="award">Best Paper Award</span> <a class="pdf" href="./pdfs/ICFHR20.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/978-3-030-58592-1_17">GANwriting: Content-Conditioned Generation of Styled Handwritten Word Images</a></p>
+    <p class="pub-authors">L. Kang, P. Riba, Y. Wang, M. Rusi&ntilde;ol, A. Forn&eacute;s and M. Villegas</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the European Conference on Computer Vision (ECCV)</em>, 2020</span> <a class="pdf" href="./pdfs/ECCV20.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICIP40778.2020.9191268">Cross-Modal Deep Networks For Document Image Classification</a></p>
+    <p class="pub-authors">S. Bakkali, Z. Ming, M. Coustaty and M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IEEE International Conference on Image Processing (ICIP)</em>, 2020</span> <a class="pdf" href="./pdfs/ICIP20.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/CVPRW50498.2020.00289">Visual and Textual Deep Feature Fusion for Document Image Classification</a></p>
+    <p class="pub-authors">S. Bakkali, Z. Ming, M. Coustaty and M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW-WTDDLE)</em>, 2020</span> <a class="pdf" href="./pdfs/CVPRW20.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICRA40945.2020.9196577">RoadText-1K: Text Detection and Recognition Dataset for Driving Videos</a></p>
+    <p class="pub-authors">S. Reddy, M. Mathew, L. Gomez, M. Rusi&ntilde;ol, D. Karatzas and C.V. Jawahar</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IEEE International Conference on Robotics and Automation (ICRA)</em>, 2020</span> <a class="pdf" href="./pdfs/ICRA20.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/WACV45572.2020.9093392">Unsupervised Writer Adaptation for Synthetic-to-Real Handwritten Word Recognition</a></p>
+    <p class="pub-authors">L. Kang, M. Rusi&ntilde;ol, A. Forn&eacute;s, P. Riba and M. Villegas</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)</em>, 2020</span> <a class="pdf" href="./pdfs/WACV20.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://www.bmvc2019.org/wp-content/VAIE2019/VAIE2019_3.pdf">Automatic Structured Text Reading for License Plates and Utility Meters</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, L. Gomez, A. Landman, M. Silva-Constenla and D. Karatzas</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the BMVC Workshop on Visual Artificial Intelligence and Entrepreneurship, (BMVC-VAIE)</em>, 2019</span> <a class="pdf" href="./pdfs/BMVCVAIE19.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title">ICDAR 2019 Competition on Scene Text Visual Question Answering</p>
+    <p class="pub-authors">A.F. Biten, R. Tito, A. Mafla, L. Gomez, M. Rusi&ntilde;ol, M. Mathew, C.V. Jawahar, E. Valveny and D. Karatzas</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the ICCV Workshop on Closing the loop between Vision and Language (ICCV-CLVL)</em>, 2019</span></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://doi.org/10.1109/ICCV.2019.00439">Scene Text Visual Question Answering</a></p>
+    <p class="pub-authors">A.F. Biten, R. Tito, A. Mafla, L. Gomez, M. Rusi&ntilde;ol, C.V. Jawahar, E. Valveny and D. Karatzas</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)</em>, 2019</span> <a class="pdf" href="./pdfs/ICCV19.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://doi.org/10.1109/ICDAR.2019.00251">ICDAR 2019 Competition on Scene Text Visual Question Answering</a></p>
+    <p class="pub-authors">A.F. Biten, R. Tito, A. Mafla, L. Gomez, M. Rusi&ntilde;ol, M. Mathew, C.V. Jawahar, E. Valveny and D. Karatzas</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2019</span> <a class="pdf" href="./pdfs/ICDAR19b.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://doi.org/10.1109/ICDAR.2019.00134">Selective Text Style Transfer</a></p>
+    <p class="pub-authors">R. Gomez, A.F. Biten, L. Gomez, J. Gibert, M. Rusi&ntilde;ol and D. Karatzas</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2019</span> <a class="pdf" href="./pdfs/ICDAR19.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://doi.org/10.1145/3323873.3325035">Self-Supervised Visual Representations for Cross-Modal Retrieval</a></p>
+    <p class="pub-authors">Y. Patel, L. Gomez, M. Rusi&ntilde;ol, D. Karatzas and C.V. Jawahar</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the ACM International Conference on Multimedia Retrieval (ICMR)</em>, 2019</span> <a class="pdf" href="./pdfs/ICMR19.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://doi.org/10.1109/CVPR.2019.01275">Good News, Everyone! Context driven entity-aware captioning for news images</a></p>
+    <p class="pub-authors">A.F. Biten, L. Gomez, M. Rusi&ntilde;ol and D. Karatzas</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, 2019</span> <a class="pdf" href="./pdfs/CVPR19.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://www.girona.cat/sgdap/cat/jornades_actes_fitxa?acta=11176">Subtitulaci&oacute; autom&agrave;tica d'imatges. Estat de l'art i limitacions en el context arxiv&iacute;stic</a></p>
+    <p class="pub-authors">L. Gomez, M. Rusi&ntilde;ol, A.F. Biten and D. Karatzas</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the Jornades Antoni Var&eacute;s: Imatge i Recerca</em>, 2018</span> <a class="pdf" href="./pdfs/IR18.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/978-3-030-12939-2_32">Convolve, Attend and Spell: An Attention-based Sequence-to-Sequence Model for Handwritten Word Recognition</a></p>
+    <p class="pub-authors">L. Kang, J.I. Toledo, P. Riba, M. Villegas, A. Forn&eacute;s and M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the German Conference on Pattern Recognition (GCPR)</em>, 2018</span> <a class="pdf" href="./pdfs/GCPR18.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://doi.org/10.1007/978-3-030-01264-9_43">Single Shot Scene Text Retrieval</a></p>
+    <p class="pub-authors">L. Gomez, A. Mafla, M. Rusi&ntilde;ol and D. Karatzas</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the European Conference on Computer Vision (ECCV)</em>, 2018</span> <a class="pdf" href="./pdfs/ECCV18.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/DAS.2018.23">Cutting Sayre's Knot: Reading Scene Text without Segmentation. Application to Utility Meters</a></p>
+    <p class="pub-authors">L. Gomez, M. Rusi&ntilde;ol and D. Karatzas</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IAPR International Workshop on Document Analysis Systems (DAS)</em>, 2018</span> <a class="pdf" href="./pdfs/DAS18a.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/DAS.2018.22">The Robust Reading Competition Annotation and Evaluation Platform</a></p>
+    <p class="pub-authors">D. Karatzas, L. Gomez, M. Rusi&ntilde;ol and A. Nicolaou</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IAPR International Workshop on Document Analysis Systems (DAS)</em>, 2018</span> <a class="pdf" href="./pdfs/DAS18b.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/DAS.2018.24">Manuscript text line detection and segmentation using second-order derivatives analysis</a></p>
+    <p class="pub-authors">D. Aldavert and M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IAPR International Workshop on Document Analysis Systems (DAS)</em>, 2018</span> <a class="pdf" href="./pdfs/DAS18c.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/DAS.2018.25">Synthetically generated semantic codebook for Bag-of-Visual-Words based word spotting</a></p>
+    <p class="pub-authors">D. Aldavert and M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IAPR International Workshop on Document Analysis Systems (DAS)</em>, 2018</span> <a class="pdf" href="./pdfs/DAS18d.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/DAS.2018.29">Field Extraction by hybrid incremental and a-priori structural templates</a></p>
+    <p class="pub-authors">V. Poulain d'Andecy, E. Hartmann and M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IAPR International Workshop on Document Analysis Systems (DAS)</em>, 2018</span> <a class="pdf" href="./pdfs/DAS18e.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title">The Robust Reading Competition Annotation and Evaluation Platform</p>
+    <p class="pub-authors">D. Karatzas, L. Gomez and M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Workshop on Open Services and Tools for Document Analysis (ICDAR-OST)</em>, 2017</span> <a class="pdf" href="./pdfs/OST17b.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2017.306">SmartDoc 2017 Video Capture: Mobile Document Acquisition in Video Mode</a></p>
+    <p class="pub-authors">J. Chazalon, P. Gomez-Kr&auml;mer, J.C. Burie, M. Coustaty, S. Eskenazi, M. Luqman, N. Nayef, M. Rusi&ntilde;ol, N. Sid&egrave;re and J.M. Ogier</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IAPR International Workshop on Open Services and Tools for Document Analysis (ICDAR-OST)</em>, 2017</span> <a class="pdf" href="./pdfs/OST17.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2017.88">LSDE: Levenshtein Space Deep Embedding for Query-by-string Word Spotting</a></p>
+    <p class="pub-authors">L. Gomez, M. Rusi&ntilde;ol and D. Karatzas</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2017</span> <a class="pdf" href="./pdfs/ICDAR17c.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2017.64">Benchmarking Keypoint Filtering Approaches for Document Image Matching</a></p>
+    <p class="pub-authors">E. Royer, J. Chazalon, M. Rusi&ntilde;ol and F. Bouchara</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2017</span> <span class="award">Best Poster Award</span> <a class="pdf" href="./pdfs/ICDAR17a.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2017.23">Automatic Static/Variable Content Separation in Administrative Document Images</a></p>
+    <p class="pub-authors">D. Aldavert, M. Rusi&ntilde;ol and R. Toledo</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2017</span> <a class="pdf" href="./pdfs/ICDAR17b.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="https://doi.org/10.1109/CVPR.2017.218">Self-supervised learning of visual features through embedding images into text topic spaces</a></p>
+    <p class="pub-authors">Y. Patel, L. Gomez, M. Rusi&ntilde;ol, C.V. Jawahar and D. Karatzas</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)</em>, 2017</span> <a class="pdf" href="./pdfs/CVPR17.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/978-3-319-46604-0_29">Dynamic Lexicon Generation for Natural Scene Images</a></p>
+    <p class="pub-authors">Y. Patel, L. Gomez, M. Rusi&ntilde;ol and D. Karatzas</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the ECCV International Workshop on Robust Reading (ECCV-IWRR)</em>, 2016</span> <a class="pdf" href="./pdfs/IWRR16.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title">Filtrage de descripteurs locaux pour l'am&eacute;lioration de la d&eacute;tection de documents</p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, J. Chazalon and J.M. Ogier</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the Colloque International Francophone sur l'&eacute;crit et le Document (CIFED)</em>, 2016</span> <a class="pdf" href="./pdfs/CIFED16.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/DAS.2016.65">Human-Document Interaction - a new frontier for document image analysis</a></p>
+    <p class="pub-authors">D. Karatzas, V.P. d'Andecy and M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Workshop on Document Analysis Systems (DAS)</em>, 2016</span> <a class="pdf" href="./pdfs/DAS16b.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/DAS.2016.66">Delaunay triangulation-based features for Camera-based document image retrieval system</a></p>
+    <p class="pub-authors">Q. Bao, M. Rusi&ntilde;ol, M. Coustaty, M.M. Luqman, C.D. Tran and J.M. Ogier</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Workshop on Document Analysis Systems (DAS)</em>, 2016</span> <a class="pdf" href="./pdfs/DAS16a.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/978-3-319-27863-6_30">Automatic Verification of Properly Signed Multi-page Document Images</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, D. Karatzas and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Symposium on Visual Computing (ISVC)</em>, 2015</span> <a class="pdf" href="./pdfs/ISVC15.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2015.7333957">Improving Document Matching Performance by Local Descriptor Filtering</a></p>
+    <p class="pub-authors">J. Chazalon, M. Rusi&ntilde;ol and J.M. Ogier</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Workshop on Camera-Based Document Analysis and Recognition (CBDAR)</em>, 2015</span> <a class="pdf" href="./pdfs/CBDAR15.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2015.7333943">ICDAR2015 Competition on Smartphone Document Capture and OCR (SmartDoc)</a></p>
+    <p class="pub-authors">J.C. Burie, J. Chazalon, M. Coustaty, S. Eskenazi, M.M. Luqman, M. Mehri, N. Nayef, J.M. Ogier, S. Prum and M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2015</span> <a class="pdf" href="./pdfs/ICDAR15e.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2015.7333812">Towards Query-by-Speech Handwritten Keyword Spotting</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, D. Aldavert, R. Toledo and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2015</span> <a class="pdf" href="./pdfs/ICDAR15d.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2015.7333808">Novel Line Verification for Multiple Instance Focused Retrieval in Document Collections</a></p>
+    <p class="pub-authors">H. Gao, M. Rusi&ntilde;ol, D. Karatzas, J. Llad&oacute;s, R. Jain and D. Doermann</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2015</span> <a class="pdf" href="./pdfs/ICDAR15c.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2015.7333831">A Comparative Study of Local Detectors and Descriptors for Mobile Document Classification</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, J. Chazalon, J.M. Ogier and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2015</span> <a class="pdf" href="./pdfs/ICDAR15b.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2015.7333836">A Semi-Automatic Groundtruthing Tool for Mobile-Captured Document Segmentation</a></p>
+    <p class="pub-authors">J. Chazalon, M. Rusi&ntilde;ol, J.M. Ogier and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2015</span> <a class="pdf" href="./pdfs/ICDAR15a.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICPR.2014.500">Embedding Document Structure to Bag-of-Words through Pair-wise Stable Key-regions</a></p>
+    <p class="pub-authors">H. Gao, M. Rusi&ntilde;ol, D. Karatzas and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Pattern Recognition (ICPR)</em>, 2014</span> <a class="pdf" href="./pdfs/ICPR14.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/DAS.2014.11">Combining Focus Measure Operators to Predict OCR Accuracy in Mobile-Captured Document Images</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, J. Chazalon and J.M. Ogier</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IAPR International Workshop on Document Analysis Systems (DAS)</em>, 2014</span> <a class="pdf" href="./pdfs/DAS14.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title">Normalisation et validation d'images de documents captur&eacute;es en mobilit&eacute;</p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, J. Chazalon and J.M. Ogier</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the Colloque International Francophone sur l'&eacute;crit et le Document (CIFED)</em>, 2014</span> <a class="pdf" href="./pdfs/CIFED14.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1117/12.2042458">Fast structural matching for document image retrieval through spatial database</a></p>
+    <p class="pub-authors">H. Gao, M. Rusi&ntilde;ol, D. Karatzas and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Recognition and Retrieval (DRR)</em>, 2014</span> <a class="pdf" href="./pdfs/DRR14.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2013.264">Bag-of-Features HMMs for segmentation-free word spotting in handwritten documents</a></p>
+    <p class="pub-authors">L. Rothacker, M. Rusi&ntilde;ol and G.A. Fink</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2013</span> <a class="pdf" href="./pdfs/ICDAR13e.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2013.53">Key-region Detection for Document Images -- Application to Administrative Document Retrieval</a></p>
+    <p class="pub-authors">H. Gao, M. Rusi&ntilde;ol, D. Karatzas, J. Llad&oacute;s, T. Sato, M. Iwamura and K. Kise</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2013</span> <a class="pdf" href="./pdfs/ICDAR13d.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2013.128">Document Classification and Page Stream Segmentation for Digital Mailroom Applications</a></p>
+    <p class="pub-authors">A. Gordo, M. Rusi&ntilde;ol, D. Karatzas and A. Bagdanov</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2013</span> <a class="pdf" href="./pdfs/ICDAR13c.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2013.223">Field Extraction from Administrative Documents by Incremental Structural Templates</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, T. Benkhelfallah and V. Poulain d'Andecy</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2013</span> <a class="pdf" href="./pdfs/ICDAR13b.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2013.108">Integrating Visual and Textual Cues for Query-by-String Word Spotting</a></p>
+    <p class="pub-authors">D. Aldavert, M. Rusi&ntilde;ol, R. Toledo and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2013</span> <a class="pdf" href="./pdfs/ICDAR13a.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/978-3-662-44854-0_1">Spotting Graphical Symbols in Camera-Acquired Documents in Real Time</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, D. Karatzas and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IAPR International Workshop on Graphics Recognition (GREC)</em>, 2014</span> <a class="pdf" href="./pdfs/GREC13.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/978-3-642-36824-0_5">Classification of Administrative Document Images by Logo Identification</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, V. Poulain d'Andecy, D. Karatzas and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IAPR International Workshop on Graphics Recognition (GREC)</em>, 2013</span> <a class="pdf" href="./pdfs/GREC11.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title">An Interactive Appearance-based Document Retrieval System for Historical Newspapers</p>
+    <p class="pub-authors">H. Gao, M. Rusi&ntilde;ol, D. Karatzas, A. Antonacopoulos and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Computer Vision Theory and Applications (VISAPP)</em>, 2013</span> <a class="pdf" href="./pdfs/VISAPP13.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title">CVC-UAB's participation in the Flowchart Recognition Task of CLEF-IP 2012</p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, L. Pere de las Heras, J. Mas, O. Ramos Terrades, D. Karatzas, A. Dutta, G. S&aacute;nchez and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Working Notes of the CLEF Conference and Labs of the Evaluation Forum (CLEF)</em>, 2012</span> <a class="pdf" href="./pdfs/CLEF12.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://ieeexplore.ieee.org/document/6460186/">Multipage Document Retrieval by Textual and Visual Representations</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, D. Karatzas, A.D. Bagdanov and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Pattern Recognition (ICPR)</em>, 2012</span> <a class="pdf" href="./pdfs/ICPR12.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICFHR.2012.282">The Role of the Users in Handwritten Word Spotting Applications: Query Fusion and Relevance Feedback</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Frontiers in Handwriting Recognition (ICFHR)</em>, 2012</span> <a class="pdf" href="./pdfs/ICFHR12.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2011.22">Browsing Heterogeneous Document Collections by a Segmentation-free Word Spotting Method</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, D. Aldavert, R. Toledo and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2011</span> <span class="award">Best Paper Award</span> <a class="pdf" href="./pdfs/ICDAR11.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/978-3-642-20161-5_32">Interactive Trademark Image Retrieval by Fusing Semantic and Visual Content</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, D. Aldavert, D. Karatzas, R. Toledo and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the European Conference on Information Retrieval (ECIR)</em>, 2011</span> <a class="pdf" href="./pdfs/ECIR11.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title">Automatic Index Generation of Digitized Map Series by Coordinate Extraction and Interpretation</p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, R. Roset, J. Llad&oacute;s and C. Montaner</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Workshop on Digital Technologies in Cartographic Heritage (DACH)</em>, 2011</span> <a class="pdf" href="./pdfs/E-PER11.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICPR.2010.394">Perceptual Image Retrieval by Adding Color Information to the Shape Context Descriptor</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, F. Noorbakhsh, D. Karatzas, E. Valveny and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IAPR International Conference on Pattern Recognition (ICPR)</em>, 2010</span> <a class="pdf" href="./pdfs/ICPR10.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1145/1815330.1815358">Efficient Logo Retrieval Through Hashing Shape Context Descriptors</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IAPR International Workshop on Document Analysis Systems (DAS)</em>, 2010</span> <a class="pdf" href="./pdfs/DAS10a.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1145/1815330.1815379">A Kernel-based Approach to Document Retrieval</a></p>
+    <p class="pub-authors">A. Gordo, J. Gibert, E. Valveny and M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IAPR International Workshop on Document Analysis Systems (DAS)</em>, 2010</span> <a class="pdf" href="./pdfs/DAS10b.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/978-3-642-13728-0_17">Symbol Recognition by Using a Concept Lattice of Graphical Patterns</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, K. Bertet, J.M. Ogier and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IAPR International Workshop on Graphics Recognition (GREC)</em>, 2010</span> <a class="pdf" href="./pdfs/GREC10.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2009.103">Logo Spotting by a Bag-of-words Approach for Document Categorization</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2009</span> <a class="pdf" href="./pdfs/ICDAR09.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICPR.2008.4760957">Segmentation Robust to the Vignette Effect for Machine Vision Systems</a></p>
+    <p class="pub-authors">D. Karatzas, M. Rusi&ntilde;ol, C. Antens and M. Ferrer</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IAPR International Conference on Pattern Recognition (ICPR)</em>, 2008</span> <a class="pdf" href="./pdfs/ICPR08.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/DAS.2008.24">Word and Symbol Spotting Using Spatial Organization of Local Descriptors</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IAPR Workshop on Document Analysis Systems (DAS)</em>, 2008</span> <a class="pdf" href="./pdfs/DAS08.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/978-3-540-88188-9_11">A Region-Based Hashing Approach for Symbol Spotting in Technical Documents</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IAPR International Workshop on Graphics Recognition (GREC)</em>, 2008</span> <a class="pdf" href="./pdfs/GREC08.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1109/ICDAR.2007.76">Camera-Based Graphical Symbol Detection</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, J. Llad&oacute;s and P. Dosch</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)</em>, 2007</span> <a class="pdf" href="./pdfs/ICDAR07.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/978-3-540-72849-8_27">Boundary Shape Recognition Using Accumulated Length and Angle Information</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol, P. Dosch and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the Iberian Conference on Pattern Recognition and Image Analysis (IBPRIA)</em>, 2007</span> <a class="pdf" href="./pdfs/IBPRIA07.pdf">PDF</a></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/11767978_4">Symbol Spotting in Technical Drawings Using Vectorial Signatures</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the IAPR International Workshop on Graphics Recognition (GREC)</em>, 2006</span> <a class="pdf" href="./pdfs/GREC06.pdf">PDF</a></p>
+  </li>
 </ol>
-
-<hr />
-<br>
-<h2>Books and Theses</h2>
-<ol type="1">
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/978-3-662-53817-3_13">
-<name><li> Flowchart Recognition in Patent Information Retrieval. </name><br></a>
-<authors>
-M. Rusi&ntilde;ol and J. Llad&oacute;s</authors>.
-In <journal>Current Challenges in Patent Information Retrieval.</journal> M. Lupu, K. Mayer, N. Kando, A.J. Trippe; (eds). Volume 37 of The Information Retrieval Series, pp 351-368, (March 2017). Springer Berlin Heidelberg.<br>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/978-0-85729-859-1_18">
-<name><li> Graphics Recognition Techniques. </name><br></a>
-<authors>
-M. Rusi&ntilde;ol and J. Llad&oacute;s</authors>.
-In <journal>Handbook of Document Image Processing and Recognition.</journal> D. Doermann and K. Tombre; (eds). pp 489-521, (April 2014). Springer-Verlag London Limited.<br>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/978-3-642-35932-3_2">
-<name><li> Interactive Document Retrieval and Classification. </name><br></a>
-<authors>
-E. Valveny, O. Ramos, J. Mas and M. Rusi&ntilde;ol</authors>.
-In <journal>Multimodal Interaction in Image and Video Applications.</journal> A.D. Sappa and J. Vitriá (eds). Intelligent Systems Reference Library Volume 48, pp 17-30, (2013). Springer Berlin Heidelberg.<br>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="http://dx.doi.org/10.1007/978-1-84996-208-7">
-<name><li> Symbol Spotting in Digital Libraries: Focused Retrieval over Graphic-rich Document Collections. </name><br></a>
-<authors>
-M. Rusi&ntilde;ol and J. Llad&oacute;s</authors>.
-<journal>Springer-Verlag London Limited.</journal> (2010).<br>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="">
-<name><li> Achievements and New Opportunities in Computer Vision. </name><br></a>
-<authors>
-A. Forn&eacute;s. A. Hern&aacute;ndez-Sabat&eacute;, D. Ponsa and M. Rusi&ntilde;ol (eds)</authors>.
-<journal>Proceedings of the Fifth CVC Workshop.</journal> (2010).<br>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="">
-<name><li> Geometric and Structural-based Symbol Spotting. Application to Focused Retrieval in Graphic Document Collections. </name><br></a>
-<authors>
-M. Rusi&ntilde;ol</authors>.
-<journal>PhD thesis.</journal> Universitat Aut&ograve;noma de Barcelona, (2009).<br>
-<div style="clear:both"></div></div>
-
-
-<div id="pub">
-<a href="">
-<name><li> A Model of Vectorial Signatures in terms of Expressive Sub-shapes: Symbol Indexation in Technical Documents. </name><br></a>
-<authors>
-M. Rusi&ntilde;ol</authors>.
-<journal>MsC thesis.</journal> Universitat Aut&ograve;noma de Barcelona, (2006).<br>
-<div style="clear:both"></div></div>
+</section>
+<section id="books">
+<h2>Books and Theses<span class="count">7</span></h2>
+<hr class="section-rule">
+<ol class="pubs">
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/978-3-662-53817-3_13">Flowchart Recognition in Patent Information Retrieval</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Current Challenges in Patent Information Retrieval</em>, M. Lupu, K. Mayer, N. Kando, A.J. Trippe; (eds). Volume 37 of The Information Retrieval Series, pp 351-368, (March 2017). Springer Berlin Heidelberg</span></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/978-0-85729-859-1_18">Graphics Recognition Techniques</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Handbook of Document Image Processing and Recognition</em>, D. Doermann and K. Tombre; (eds). pp 489-521, (April 2014). Springer-Verlag London Limited</span></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/978-3-642-35932-3_2">Interactive Document Retrieval and Classification</a></p>
+    <p class="pub-authors">E. Valveny, O. Ramos, J. Mas and M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>Multimodal Interaction in Image and Video Applications</em>, A.D. Sappa and J. Vitriá (eds). Intelligent Systems Reference Library Volume 48, pp 17-30, (2013). Springer Berlin Heidelberg</span></p>
+  </li>
+  <li>
+    <p class="pub-title"><a href="http://dx.doi.org/10.1007/978-1-84996-208-7">Symbol Spotting in Digital Libraries: Focused Retrieval over Graphic-rich Document Collections</a></p>
+    <p class="pub-authors">M. Rusi&ntilde;ol and J. Llad&oacute;s</p>
+    <p class="pub-meta"><span class="venue"><em>Springer-Verlag London Limited</em>, (2010)</span></p>
+  </li>
+  <li>
+    <p class="pub-title">Achievements and New Opportunities in Computer Vision</p>
+    <p class="pub-authors">A. Forn&eacute;s, A. Hern&aacute;ndez-Sabat&eacute;, D. Ponsa and M. Rusi&ntilde;ol (eds)</p>
+    <p class="pub-meta"><span class="venue"><em>Proceedings of the Fifth CVC Workshop</em>, (2010)</span></p>
+  </li>
+  <li>
+    <p class="pub-title">Geometric and Structural-based Symbol Spotting. Application to Focused Retrieval in Graphic Document Collections</p>
+    <p class="pub-authors">M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>PhD thesis</em>, Universitat Aut&ograve;noma de Barcelona, (2009)</span></p>
+  </li>
+  <li>
+    <p class="pub-title">A Model of Vectorial Signatures in terms of Expressive Sub-shapes: Symbol Indexation in Technical Documents</p>
+    <p class="pub-authors">M. Rusi&ntilde;ol</p>
+    <p class="pub-meta"><span class="venue"><em>MSc thesis</em>, Universitat Aut&ograve;noma de Barcelona, (2006)</span></p>
+  </li>
 </ol>
-</ol>	
-
-
-<hr/>
-<br>
+</section>
+<section id="distinctions">
 <h2>Distinctions, Trainings and Mentorships</h2>
-<ul> 
-<li> <b>Training</b><i> in the tech transfer program De la Ci&egrave;ncia al Mercat</i>, 2025 and 2026.
-<li> <b>Training</b><i> in the International Seminar on on Global Suistanable Transportation Management</i>, Georgia State University, 2025. 	
-<li> <b>Mentor</b><i> in the entrepreneurship programs AI4ALL and AI ACCELERATOR</i>, 2023, 2024 and 2026.</li>	
-<li> <b>AllRead selected as one of the 100 best startups in Spanish science and technology parks of 2023</b>: <i>The Association of Science and Technology Parks of Spain (APTE)</i>, 2023.</li>	
-<li> <b>AllRead selected as Top 10 most disruptives Catalan companies in 2022</b>: <i>Exponential Leaders, Catalan Goverment, ministry of business and labour, and ACCIÓ</i>, 2022.</li>
-<li> <b>Membership</b>: <i>ELLIS - the European Laboratory for Learning and Intelligent Systems - Society</i>, 2022.</li>
-<li> <b>AllRead winner of the Emprendedor XXI program under category DeepTechXXI</b>: <i>CaixaBank DayOne</i>, 2021.</li>
-<li> <b>AllRead winner of the Lanzate program</b>: <i>EOI Escuela de Organización Industrial and Orange</i>, 2020.</li>
-<li> <b>Best Paper Award</b>: <i>International Conference on Frontiers in Handwriting Recognition (ICFHR)</i>, International Association of Pattern Recognition (IAPR), 2020.
-<li> <b>AllRead winner of the SeedRocket program</b>: Best Spanish startup, <i>BStartup, Banc Sabadell</i>, 2021.</li>
-<li> <b>AllRead selected Project</b>: <i>The Collider</i>, Mobile World Capital Barcelona, 2019.</li>
-<li> <b>Best Poster Award</b>: <i>International Conference on Document Analysis and Recognition (ICDAR)</i>, International Association of Pattern Recognition (IAPR), 2017.</li>
-<li> <b>Accreditation</b>: <i>Tenured Assistant</i>, Ag&egrave;ncia per a la Qualitat del Sistema Universitari de Catalunya (AQU), 2017.</li>
-<li> <b>Winner</b>: <i>Ideas Generation Program</i>, Parc de Recerca de la UAB, 2016.</li>
-<li> <b>Selected Project</b>: <i>Market Assessment Program</i>, ACCI&Oacute; / EADA Business School, 2016.</li>
-<li> <b>Winner</b>: <i>ICFHR Competition on Word Spotting</i>, International Association of Pattern Recognition (IAPR), 2016.</li>
-<li> <b>2nd place</b>: <i>ICDAR Competition on Word Spotting</i>, International Association of Pattern Recognition (IAPR), 2015.</li>
-<li> <b>Finalist</b>: <i>VALORTEC Competition on Business Ideas</i>, Ag&egrave;ncia per la Competitivitat de l'Empresa (ACCI&Oacute;), 2014.</li>
-<li> <b>Accreditation</b>: <i>Ma&icirc;tre de Conf&egrave;rences</i>, Minist&egrave;re de l'Enseignement Sup&eacute;rieur, de la Recherche et de l'Innovation, 2014.</li>
-<li> <b>Finalist</b>: <i>Apps&amp;Cultura Challenge</i>, AppCircus, 2014.</li>
-<li> <b>Winner</b>: <i>Flowchart Recognition Task of the CLEF-IP Evaluation Campaign</i>, CLEF-IP, 2012.</li>
-<li> <b>Best Paper Award</b>: <i>International Conference on Document Analysis and Recognition (ICDAR)</i>, International Association of Pattern Recognition (IAPR), 2011.</li>
-<li> <b>Accreditation</b>: <i>Lecturer Teacher</i>, Ag&egrave;ncia per a la Qualitat del Sistema Universitari de Catalunya (AQU), 2010.
-</li></ul>
+<hr class="section-rule">
+<ul class="awards">
+  <li><b>Training</b><i> in the tech transfer program De la Ci&egrave;ncia al Mercat</i>, 2025 and 2026</li>
+  <li><b>Training</b><i> in the International Seminar on Global Sustainable Transportation Management</i>, Georgia State University, 2025</li>
+  <li><b>Mentor</b><i> in the entrepreneurship programs AI4ALL and AI ACCELERATOR</i>, 2023, 2024 and 2026</li>
+  <li><b>AllRead selected as one of the 100 best startups in Spanish science and technology parks of 2023</b>: <i>The Association of Science and Technology Parks of Spain (APTE)</i>, 2023</li>
+  <li><b>AllRead selected as Top 10 most disruptive Catalan companies in 2022</b>: <i>Exponential Leaders, Catalan Government, ministry of business and labour, and ACCIÓ</i>, 2022</li>
+  <li><b>Membership</b>: <i>ELLIS - the European Laboratory for Learning and Intelligent Systems - Society</i>, 2022</li>
+  <li><b>AllRead winner of the Emprendedor XXI program under category DeepTechXXI</b>: <i>CaixaBank DayOne</i>, 2021</li>
+  <li><b>AllRead winner of the L&aacute;nzate program</b>: <i>EOI Escuela de Organización Industrial and Orange</i>, 2020</li>
+  <li><b>Best Paper Award</b>: <i>International Conference on Frontiers in Handwriting Recognition (ICFHR)</i>, International Association of Pattern Recognition (IAPR), 2020</li>
+  <li><b>AllRead winner of the SeedRocket program</b>: Best Spanish startup, <i>BStartup, Banc Sabadell</i>, 2021</li>
+  <li><b>AllRead selected Project</b>: <i>The Collider</i>, Mobile World Capital Barcelona, 2019</li>
+  <li><b>Best Poster Award</b>: <i>International Conference on Document Analysis and Recognition (ICDAR)</i>, International Association of Pattern Recognition (IAPR), 2017</li>
+  <li><b>Accreditation</b>: <i>Tenured Assistant</i>, Ag&egrave;ncia per a la Qualitat del Sistema Universitari de Catalunya (AQU), 2017</li>
+  <li><b>Winner</b>: <i>Ideas Generation Program</i>, Parc de Recerca de la UAB, 2016</li>
+  <li><b>Selected Project</b>: <i>Market Assessment Program</i>, ACCI&Oacute; / EADA Business School, 2016</li>
+  <li><b>Winner</b>: <i>ICFHR Competition on Word Spotting</i>, International Association of Pattern Recognition (IAPR), 2016</li>
+  <li><b>2nd place</b>: <i>ICDAR Competition on Word Spotting</i>, International Association of Pattern Recognition (IAPR), 2015</li>
+  <li><b>Finalist</b>: <i>VALORTEC Competition on Business Ideas</i>, Ag&egrave;ncia per la Competitivitat de l'Empresa (ACCI&Oacute;), 2014</li>
+  <li><b>Accreditation</b>: <i>Ma&icirc;tre de Conf&eacute;rences</i>, Minist&egrave;re de l'Enseignement Sup&eacute;rieur, de la Recherche et de l'Innovation, 2014</li>
+  <li><b>Finalist</b>: <i>Apps&amp;Cultura Challenge</i>, AppCircus, 2014</li>
+  <li><b>Winner</b>: <i>Flowchart Recognition Task of the CLEF-IP Evaluation Campaign</i>, CLEF-IP, 2012</li>
+  <li><b>Best Paper Award</b>: <i>International Conference on Document Analysis and Recognition (ICDAR)</i>, International Association of Pattern Recognition (IAPR), 2011</li>
+  <li><b>Accreditation</b>: <i>Lecturer Teacher</i>, Ag&egrave;ncia per a la Qualitat del Sistema Universitari de Catalunya (AQU), 2010</li>
+</ul>
+</section>
+</main>
 
-
-<div class="clear">&nbsp;</div>
-</div>
-</div>  
-<div id="credits">
-<span class="small">Mar&ccedil;al Rossinyol, 2026.</span></p>
-<span class="small">Site design based on a template from <a href="http://andreasviklund.com/">Andreas Viklund</a></span></p>
-</div>  
-</div>
-</body></html>
+<footer class="wrap">
+  <p>Mar&ccedil;al Rossinyol, 2026.</p>
+</footer>
+</body>
+</html>
